@@ -3,8 +3,7 @@ import mediapipe as mp
 import csv
 import os
 
-BASE_DIR = os.path.dirname(__file__)
-data_path = os.path.join(BASE_DIR, 'data', 'asl_landmarks.csv')
+data_path = os.path.join('data', 'asl_landmarks.csv')
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()

@@ -9,9 +9,8 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-BASE_DIR = os.path.dirname(__file__)
-data_path = os.path.join(BASE_DIR, 'data', 'asl_landmarks.csv')
-model_path = os.path.join(BASE_DIR, 'models', 'asl_model.pt')
+data_path = os.path.join('data', 'asl_landmarks.csv')
+model_path = os.path.join('models', 'asl_model.pt')
 
 # ----------------------------
 # 1. Dataset
