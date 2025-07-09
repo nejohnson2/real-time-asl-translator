@@ -3,6 +3,9 @@ import mediapipe as mp
 import csv
 import os
 
+BASE_DIR = os.path.dirname(__file__)
+data_path = os.path.join(BASE_DIR, 'data', 'asl_landmarks.csv')
+
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 cap = cv2.VideoCapture(0)
@@ -52,12 +55,12 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-file_exists = os.path.isfile('asl_landmarks.csv')
-with open('asl_landmarks.csv', mode='a', newline='') as f:
+file_exists = os.path.isfile(data_path)
+with open(data_path, mode='a', newline='') as f:
     writer = csv.writer(f)
     header = ['label', 'hand_label'] + [f'{axis}{i}' for i in range(1, 22) for axis in ('x', 'y', 'z')]
     if not file_exists:
         writer.writerow(header)
     writer.writerows(data)
 
-print(f"Saved {len(data)} samples to asl_landmarks.csv")
+print(f"Saved {len(data)} samples to {data_path}")

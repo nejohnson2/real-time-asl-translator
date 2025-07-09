@@ -1,5 +1,6 @@
 # train.py
 
+import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -7,6 +8,10 @@ from torch.utils.data import Dataset, DataLoader
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+
+BASE_DIR = os.path.dirname(__file__)
+data_path = os.path.join(BASE_DIR, 'data', 'asl_landmarks.csv')
+model_path = os.path.join(BASE_DIR, 'models', 'asl_model.pt')
 
 # ----------------------------
 # 1. Dataset
@@ -54,7 +59,7 @@ class ASLClassifier(nn.Module):
 # ----------------------------
 
 def train():
-    dataset = ASLDataset('asl_landmarks.csv')
+    dataset = ASLDataset(data_path)
 
     # Split dataset
     train_idx, val_idx = train_test_split(range(len(dataset)), test_size=0.2, random_state=42)
@@ -106,8 +111,8 @@ def train():
         print(f"Epoch [{epoch+1}/{num_epochs}] Loss: {avg_loss:.4f} Val Acc: {val_acc:.4f}")
 
     # Save model
-    torch.save(model.state_dict(), "asl_model.pt")
-    print("✅ Model saved as asl_model.pt")
+    torch.save(model.state_dict(), model_path)
+    print(f"✅ Model saved as {model_path}")
 
 if __name__ == '__main__':
     train()

@@ -1,10 +1,14 @@
 import cv2
+import os
 import mediapipe as mp
 import torch
 import torch.nn as nn
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import joblib  # optional if you saved your encoder
+
+BASE_DIR = os.path.dirname(__file__)
+model_path = os.path.join(BASE_DIR, 'models', 'asl_model.pt')
 
 # ----------------------------
 # 1. Model Definition (same as training)
@@ -31,7 +35,7 @@ class ASLClassifier(nn.Module):
 
 # Load your trained model
 model = ASLClassifier()
-model.load_state_dict(torch.load('asl_model.pt', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 model.eval()
 
 # Recreate your label encoder (or load it if you saved it)
