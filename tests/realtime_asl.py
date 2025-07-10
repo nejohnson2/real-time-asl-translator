@@ -102,9 +102,13 @@ while True:
                     confidence = confidence.item()                  # confidence as float (0–1)
                     predicted_letter = le.inverse_transform([predicted_class_idx])[0]
 
+                if confidence < 0.6:
+                    predicted_letter = ''
+                    confidence = 0.0
+
                 # Display prediction
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                color = (0, 255, 0) if confidence > 0.5 else (0, 0, 255)
+                color = (0, 255, 0) if confidence > 0.6 else (0, 0, 255)
                 cv2.putText(frame, f'ASL: {predicted_letter}', (10, 70), font, 2, color, 3)
                 cv2.putText(frame, f'Confidence: {confidence:.2f}', (10, 130), font, 1, color, 2)
 
