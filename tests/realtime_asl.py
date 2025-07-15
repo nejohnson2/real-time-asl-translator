@@ -7,7 +7,9 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import joblib  # optional if you saved your encoder
 
-model_path = os.path.join('models', 'asl_model.pt')
+#model_path = os.path.join('..', 'models', 'asl_model.pt')
+model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'asl_model.pt')
+model_path = os.path.abspath(model_path)
 print(f"Loading model from {model_path}")
 
 # ----------------------------
