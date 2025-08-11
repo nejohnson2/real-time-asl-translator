@@ -1,6 +1,16 @@
 # Real Time American Sign Language (ASL) Translator
 
-This is a train AI model that uses Google's MediaPipe library to track hand movments in real-time.  The movements are translated into english alphabet letters.
+## About
+
+This project develops a neural network model for real-time American Sign Language (ASL) translation. It uses hand landmark data collected via Google's MediaPipe and trains a feedforward neural network (implemented in PyTorch) to recognize ASL alphabet signs from webcam input. The model architecture consists of multiple fully connected layers with ReLU activations and dropout for regularization. Training and evaluation are handled using PyTorch, with data preprocessing and label encoding performed using pandas and scikit-learn. The main tools and libraries used include:
+
+- **PyTorch**: For building and training the neural network classifier
+- **MediaPipe**: For real-time hand tracking and landmark extraction
+- **OpenCV**: For webcam input and visualization
+- **scikit-learn**: For label encoding and data splitting
+- **pandas**: For data handling
+
+See `asl-translator/train_model.py` for details on the model architecture and training process.
 
 ## Requirements
 
